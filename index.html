@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt"><head><meta charset="utf-8"><title>Rotas para a escola</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Rotas"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0a84ff"><style>
+:root{--bg:#e8e8ed;--glass:rgba(246,246,250,.74);--card:rgba(255,255,255,.82);--tx:#0b0b0d;--mu:#6c6c70;--ln:rgba(60,60,67,.14);--bl:#0a84ff;--ok:#28a745;--wa:#ff9f0a;--er:#ff453a;box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101114;--glass:rgba(30,30,34,.72);--card:rgba(58,58,62,.6);--tx:#fff;--mu:#9d9da4;--ln:rgba(235,235,245,.16)}}
+:root[data-theme="dark"]{--bg:#101114;--glass:rgba(30,30,34,.72);--card:rgba(58,58,62,.6);--tx:#fff;--mu:#9d9da4;--ln:rgba(235,235,245,.16)}
+html,body{margin:0}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--tx);font:16px/1.3 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.sheet{max-width:600px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top,0px)) 14px 0}
+.drag{padding:0 4px 12px}
+h1{margin:0;font-size:30px;line-height:1.1;letter-spacing:-.025em;font-weight:700}
+.sc{padding:0 0 calc(40px + env(safe-area-inset-bottom,0px))}
+.seg{position:relative;display:flex;background:var(--ln);border-radius:10px;padding:2px;margin-bottom:10px}
+.th{position:absolute;top:2px;bottom:2px;left:2px;background:var(--card);border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.seg button{position:relative;flex:1;border:0;background:none;color:var(--tx);padding:9px;font:600 14px inherit;letter-spacing:0;transition:transform .15s cubic-bezier(.2,.8,.2,1)}.seg button:active{transform:scale(.96)}
+.row{display:flex;gap:8px;margin-bottom:10px}.row label{flex:1;background:var(--card);border-radius:14px;padding:9px 12px;font-size:12px;color:var(--mu);letter-spacing:.01em}
+.row input,.row select{display:block;width:100%;border:0;background:none;color:var(--tx);font:600 19px inherit;letter-spacing:-.02em;padding:2px 0;outline:0}
+.c{background:var(--card);border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:0 0 0 .5px var(--ln)}
+.hd{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.hd>b{letter-spacing:-.015em}
+.b{min-width:26px;text-align:center;color:#fff;border-radius:7px;padding:2px 7px;font-weight:700;font-size:14px;letter-spacing:0}
+.b1{background:#8cb800}.b2{background:#e4002b}.b3{background:#00a3e0}.b4{background:#17409a}.bw{background:var(--mu)}
+.big{margin-left:auto;font-size:24px;font-weight:700;letter-spacing:-.03em}
+.t{display:flex;gap:10px;margin-top:8px;font-size:14px;line-height:1.35}.t b{width:46px;flex:none}.t span:not(.b){color:var(--mu)}
+.m{font-weight:700;margin-top:10px;font-size:14px}.pb{color:var(--mu);font-size:13px;margin-top:4px}
+.tag{font-size:11px;background:var(--bl);color:#fff;border-radius:7px;padding:2px 7px;margin-left:2px;letter-spacing:.01em}
+.cdx{margin-top:12px;border-radius:14px;padding:12px 14px;font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.15;transition:background .4s}.cdx.ok{color:var(--ok);padding-left:0}.cdx.soon{background:rgba(255,69,58,.14);box-shadow:inset 0 0 0 1px rgba(255,69,58,.4)}.cdx.late{background:rgba(255,69,58,.22);box-shadow:inset 0 0 0 1px rgba(255,69,58,.55),inset 5px 0 0 #ff453a;font-size:19px;font-weight:600;padding-left:18px}.cdx small{display:block;margin-top:4px;font-size:14px;font-weight:500;color:var(--mu);letter-spacing:0}.alr{margin-bottom:10px;border-radius:14px;padding:12px 14px 12px 18px;background:rgba(255,69,58,.2);box-shadow:inset 0 0 0 1px rgba(255,69,58,.5),inset 5px 0 0 #ff453a;font-size:17px;font-weight:600;line-height:1.25}.alr small{display:block;margin-top:3px;font-size:13px;font-weight:500;color:var(--mu)}.bt:disabled{opacity:.4}.wh{display:flex;justify-content:space-between;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);margin:16px 6px 8px}.dr{display:flex;gap:12px;align-items:center;background:var(--card);border-radius:18px;padding:12px;margin-bottom:8px;box-shadow:0 0 0 .5px var(--ln)}.dd{width:54px;height:58px;border-radius:14px;background:var(--ln);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none}.dd i{font-style:normal;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--mu)}.dd b{font-size:23px;line-height:1.1;letter-spacing:-.03em}.dr.hj .dd{background:var(--bl);color:#fff}.dr.hj .dd i{color:rgba(255,255,255,.85)}.dr.ts{background:rgba(255,69,58,.14);box-shadow:inset 0 0 0 1px rgba(255,69,58,.42)}.dr.ts .dd{background:#ff453a;color:#fff}.dr.ts .dd i{color:rgba(255,255,255,.85)}.di{flex:1;min-width:0}.di .a{font-weight:600;font-size:16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}.di .s2{font-size:13px;color:var(--mu);margin-top:3px;line-height:1.35}.ds{text-align:right;flex:none}.ds small{display:block;font-size:11px;color:var(--mu);letter-spacing:.04em;text-transform:uppercase}.ds b{font-size:22px;letter-spacing:-.03em}.pill{border:0;border-radius:999px;padding:9px 14px;background:var(--ln);color:var(--tx);font:600 14px inherit}.pill.on{background:var(--bl);color:#fff}.bk{background:none;border:0;color:var(--bl);font:600 16px inherit;padding:4px 0}.lk{background:none;border:0;color:var(--bl);font:600 13px inherit;padding:0 10px 0 0}.bt{background:var(--bl);color:#fff;border:0;border-radius:10px;padding:9px 16px;font:600 14px inherit;margin-top:10px}.pb button{background:none;border:0;color:var(--bl);font:600 13px inherit;padding:0 0 0 6px}.n{color:var(--mu);font-size:12px;text-align:center;margin:16px 6px 0;line-height:1.4}
+</style></head><body>
+<div class="sheet" id="sh"><div class="drag" id="dg"><h1>Rotas · Mobilis Leiria</h1></div>
+<div class="sc" id="sc">
+<div id="tbn"></div>
+<div class="seg" id="tb"><i class="th" id="th2"></i><button id="t0">Hoje</button><button id="t1">Rotas</button><button id="t2">Semana</button></div>
+<div id="vh"></div><div id="vs" style="display:none"></div><div id="vd" style="display:none"></div>
+<div id="vr" style="display:none">
+<div class="seg" id="sg"><i class="th" id="th"></i><button id="d0">Casa → Escola</button><button id="d1">Escola → Casa</button></div>
+<div class="row"><label><span id="tl">Chegar à escola às</span><input id="ti" type="time" value="11:30"></label>
+<label>Margem mínima<select id="mg"><option value="0">0 min</option><option value="10" selected>10 min</option><option value="15">15 min</option><option value="30">30 min</option><option value="40">40 min</option></select></label></div>
+<div class="row"><label>A pé até Marinheiros (min)<input id="w3" type="number" value="12" min="1"></label><label>A pé até Vale Sepal (min)<input id="w4" type="number" value="3" min="1"></label></div>
+<div class="row"><label>Tempo de espera na paragem (min)<input id="wb" type="number" value="5" min="0"></label></div>
+<div class="row"><label>Tempo para me preparar (min)<input id="wp" type="number" value="60" min="0"></label><label>Horas de sono<input id="hs" type="number" value="8" min="4" max="12" step="0.5"></label></div>
+<div id="out"></div></div>
+<p class="n">Horários de dias úteis das linhas 1, 2, 3 e 4 (em vigor desde 1 set 2026). Só cobre estas linhas e a escola, não é um mapa completo. Horários teóricos: confirma sempre na paragem.</p>
+</div></div>
+<script>
+const R=matchMedia('(prefers-reduced-motion: reduce)').matches,out=document.getElementById('out');
+/* Mola amortecida, interrompível: parte do valor atual e herda a velocidade */
+class Spring{constructor(set,x){this.set=set;this.x=x;this.v=0;this.raf=0;set(x)}
+ stop(){cancelAnimationFrame(this.raf);this.raf=0}
+ to(t,v0=0,k=380,z=.92){this.stop();if(R){this.x=t;this.v=0;this.set(t);return}this.v=v0;const c=2*z*Math.sqrt(k);let l=performance.now();
+  const s=n=>{let dt=Math.min((n-l)/1000,1/30);l=n;this.v+=(-k*(this.x-t)-c*this.v)*dt;this.x+=this.v*dt;this.set(this.x);
+   if(Math.abs(this.x-t)<.1&&Math.abs(this.v)<2){this.x=t;this.set(t);this.raf=0}else this.raf=requestAnimationFrame(s)};this.raf=requestAnimationFrame(s)}}
+
+const m=s=>{const[h,x]=s.split(':');return +h*60+ +x},f=t=>String(Math.floor(t/60)%24).padStart(2,'0')+':'+String(t%60).padStart(2,'0'),L=s=>s.split(' ').map(m),r=(a,b)=>{const o=[];for(let t=m(a);t<=m(b);t+=30)o.push(t);return o};
+const d1=r('06:40','19:40').map(t=>[t,'1',10]),d2=r('07:42','19:42').map(t=>[t,'2',10]),toS=d1.concat(d2).sort((a,b)=>a[0]-b[0]);
+const s1=r('06:50','19:50').map(t=>[t,'1',11]),s2=r('07:52','19:52').map(t=>[t,'2',13]),fromS=s1.concat(s2).sort((a,b)=>a[0]-b[0]);
+const D=(s,l,u)=>L(s).map(t=>[t,l,u]);
+const L3=D('06:43 07:38 07:58 08:48 09:43 10:13 11:08 12:13 13:13 13:58 15:08 16:08 16:58 17:58 18:18 19:08 20:13','3',12),L3b=D('06:30 07:20 08:15 08:35 09:30 10:30 11:45 12:30 13:40 14:30 15:30 16:30 16:45 17:40 18:45 19:10','3',13),
+L4=D('07:29 08:19 09:29 10:59 12:39 14:29 16:49 17:49 18:39 19:59','4',19),L4b=D('07:00 07:50 09:00 10:30 12:10 14:00 16:20 17:20 18:10 19:30','4',29);
+const W=x=>({w:x}),B=(d,from)=>({d,from});
+let dir=0;const $=i=>document.getElementById(i);
+function opts(){const a=+$('w3').value,c=+$('w4').value;return dir==0?[
+ {n:'Linha 3 direta',l:[W(a),B(L3,'Marinheiros · na frente: Ponte da Pedra/Gândara (não Telheiro)')]},
+ {n:'Linha 4 + troca (1 ou 2)',l:[W(c),B(L4,'Vale Sepal'),B(toS,'Terminal / Estádio')]},
+ {n:'A pé (~45 min)',l:[W(45)]}]:[
+ {n:'Linha 3 direta',l:[B(L3b,'Escola · na frente: Telheiro'),W(a)]},
+ {n:'Linhas 1/2 + troca (4)',l:[B(fromS,'Escola'),B(L4b,'Terminal'),W(c)]},
+ {n:'A pé (~45 min)',l:[W(45)]}]}
+function sim(l,t0){let t=t0,st=[];for(const x of l){if(x.w!=null){st.push([t,'🚶 A pé '+x.w+' min']);t+=x.w}else{const e=x.d.find(y=>y[0]>=t);if(!e)return null;if(e[0]>t)st.push([t,'Espera '+(e[0]-t)+' min · '+x.from]);st.push([e[0],'<span class="b b'+e[1]+'">'+e[1]+'</span> '+x.from]);t=e[0]+e[2]}}return{t0,arr:t,st}}
+function cands(o){if(o.l.length==1){return[{walk:1}]}const bi=o.l.findIndex(x=>x.d),pre=o.l.slice(0,bi).reduce((s,x)=>s+x.w,0),buf=Math.max(0,+$('wb').value||0);return o.l[bi].d.map(e=>sim(o.l,e[0]-pre-buf)).filter(Boolean)}
+function badges(o){return o.l.filter(x=>x.d||x.w==45).map(x=>x.d?'':'<span class="b bw">🚶</span>').join('')}
+function run(a){const T=m($('ti').value),mg=+$('mg').value,arrive=dir==0,X=T-mg,h=[];
+ for(const o of opts()){let cs,best,bk;
+  if(o.l.length==1){const w=o.l[0].w;const s=sim(o.l,arrive?X-w:T);best=s;bk=null}
+  else{cs=cands(o);if(arrive){const ok=cs.filter(c=>c.arr<=X);best=ok[ok.length-1];bk=best?cs[cs.indexOf(best)+1]:null}else{const ok=cs.filter(c=>c.t0>=T);best=ok[0];bk=ok[1]}}
+  h.push({o,best,bk})}
+ h.sort((a,b)=>(a.best?0:1)-(b.best?0:1)||(a.o.l.length==1)-(b.o.l.length==1)||(arrive?b.best?.t0-a.best?.t0:a.best?.arr-b.best?.arr)||0);
+ out.innerHTML=h.map((x,i)=>{const{o,best,bk}=x;if(!best)return`<div class="c"><b>${o.n}</b><div class="pb">Sem horário que cumpra isto.</div></div>`;
+  const mgn=T-best.arr,col=!arrive?'var(--tx)':mgn>=30?'var(--ok)':mgn>=15?'var(--wa)':'var(--er)';
+  const chips=o.l.filter(z=>z.d).map(z=>z.d[0][1]=='1'||z.d[0][1]=='2'?'<span class="b b1">1</span><span class="b b2">2</span>':'<span class="b b'+z.d[0][1]+'">'+z.d[0][1]+'</span>').join(' › ')||'<span class="b bw">🚶</span>';
+  return`<div class="c"><div class="hd">${chips}<b>${o.n}</b>${i==0?'<span class="tag">Sugerida</span>':''}<span class="big">${f(best.arr)}</span></div>
+  ${best.st.map(s=>`<div class="t"><b>${f(s[0])}</b><div>${s[1]}</div></div>`).join('')}
+  <div class="t"><b>${f(best.arr)}</b><div>${arrive?'Chegas à escola':'Chegas a casa'}</div></div>
+  <div class="m" style="color:${col}">${arrive?'Sais de casa às '+f(best.t0)+' · margem '+mgn+' min':'Sais às '+f(best.t0)}</div>
+  ${bk?`<div class="pb">Seguinte: ${f(bk.t0)} → ${f(bk.arr)}${arrive?(bk.arr<=T?' (ainda chegas a horas)':' (já chegas tarde)'):''}</div>`:''}</div>`}).join('')}
+
+function anim(){if(R)return;[...out.children].forEach((c,i)=>{c.style.opacity=0;const p=new Spring(y=>{c.style.transform=`translateY(${y}px)`;c.style.opacity=Math.max(0,1-y/16)},16);setTimeout(()=>p.to(0,0,300,.85),60+i*55)})}
+const $$=i=>document.getElementById(i),sh=$$('sh'),sc=$$('sc'),dg=$$('dg'),th=$$('th');
+const T=new Spring(x=>th.style.transform=`translateX(${x}px)`,0);
+function setDir(d,first){dir=d;$$('d0').style.opacity=d?.6:1;$$('d1').style.opacity=d?1:.6;$$('tl').textContent=d==0?'Chegar à escola às':'Sair da escola depois das';if(!first)$$('ti').value=d==0?'11:30':'12:20';const w=$$('sg').offsetWidth/2-2;th.style.width=w+'px';T.to(d*w,0,420,.9);run();anim()}
+$$('d0').onclick=()=>setDir(0);$$('d1').onclick=()=>setDir(1);['ti','mg','w3','w4','wb','wp','hs'].forEach(i=>$$(i).oninput=()=>cfg());
+setDir(0,true);
+
+const S="20261006:c,20261007:a,20261009:d,20261012:b,20261013:c,20261014:a,20261016:d,20261019:b,20261020:c,20261021:a,20261023:d,20261026:b,20261027:c,20261028:a,20261030:d,20261102:b,20261103:c,20261104:a,20261106:d,20261109:b,20261110:c,20261111:a,20261113:d,20261123:b,20261124:c,20261125:a,20261127:d,20261130:b,20261202:a,20261204:d,20261207:b,20261209:a,20261211:d,20261214:b,20261215:c,20261216:a,20261218:d,20270104:b,20270105:c,20270106:a,20270108:d,20270111:b,20270112:c,20270113:a,20270115:d,20270118:b,20270119:c,20270120:a,20270122:d,20270125:b,20270126:c,20270127:a,20270129:d,20270212:d,20270215:b,20270216:c,20270217:a,20270219:d,20270222:b,20270223:c,20270224:a,20270226:d,20270301:b,20270302:c,20270303:a,20270305:d,20270308:b,20270309:c,20270310:a,20270312:d,20270315:b,20270316:c,20270317:a,20270319:d,20270322:b,20270323:c,20270324:a,20270405:b,20270406:c,20270407:a,20270409:d,20270412:b,20270413:c,20270414:a,20270416:d,20270419:b,20270420:c,20270421:a,20270423:d,20270426:b,20270427:c,20270428:a,20270430:d,20270503:b,20270504:c,20270505:a,20270507:d,20270510:b,20270511:c,20270512:a,20270514:d,20270517:b,20270518:c,20270519:a,20270521:d,20270524:b,20270525:c,20270526:a,20270528:d,20270531:b,20270601:c,20270602:a,20270604:d,20270607:b,20270608:c,20270609:a,20270611:d".split(',').reduce((o,x)=>{const[k,v]=x.split(':');o[k]=v;return o},{}),Z={a:['09:30','11:25'],b:['10:35','12:20'],c:['11:30','12:20'],d:['11:30','13:20']},TS=new Set(['20261102','20261127','20270111','20270222','20270322','20270517']);
+const K=d=>d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0'),DN=['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+const ls=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem(k));localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}};
+const vh=$$('vh'),vs=$$('vs'),vr=$$('vr');
+function pick(o,arr,T){if(o.l.length==1){const w=o.l[0].w;return sim(o.l,arr?T-w:T)}const cs=cands(o);if(arr){const ok=cs.filter(c=>c.arr<=T);return ok[ok.length-1]}return cs.filter(c=>c.t0>=T)[0]}
+function withDir(d,fn){const o=dir;dir=d;try{return fn()}finally{dir=o}}
+const ch=o=>o.l.some(z=>z.d)?o.l.filter(z=>z.d).map(z=>{const g=z.d[0][1];return g=='1'||g=='2'?'<span class="b b1">1</span><span class="b b2">2</span>':`<span class="b b${g}">${g}</span>`}).join(' › '):'<span class="b bw">🚶</span>';
+const stH=c=>c.st.map(s=>`<div class="t"><b>${f(s[0])}</b><div>${s[1]}</div></div>`).join('');
+const plan=z=>withDir(0,()=>opts().map(o=>({o,c:pick(o,true,m(z[0])-(+$('mg').value))})));
+function nextClass(nm){const d=new Date();for(let i=0;i<40;i++){const k=K(d);if(S[k]){const z=Z[S[k]];if(i>0||m(z[1])>nm)return{d:new Date(d),k,z,i}}d.setDate(d.getDate()+1)}return null}
+const dayName=(nc)=>nc.i==0?'Hoje':nc.i==1?'Amanhã':DN[nc.d.getDay()]+' '+nc.d.getDate()+'/'+(nc.d.getMonth()+1);
+function delayCard(){const lg=ls('lg')||[];let s='';for(const g of['3','4','1','2']){const a=lg.filter(x=>x[0]==g);if(a.length){const av=a.reduce((p,x)=>p+x[1],0)/a.length,sg=Math.max(5,Math.ceil(av)+3);s+=`<div class="pb">Linha ${g}: atraso médio ${av.toFixed(0)} min (${a.length} registos) · folga sugerida ${sg} min<button onclick="$('wb').value=${sg};cfg()">Aplicar</button></div>`}}
+ return`<div class="c"><b>Registar atraso</b><div class="row" style="margin:8px 0 0"><label>Linha<select id="dl"><option>3</option><option>4</option><option>1</option><option>2</option></select></label><label>Atraso (min)<input id="dm" type="number" value="5" min="0"></label></div><button class="bt" onclick="addDelay()">Registar</button>${s}</div>`}
+function addDelay(){const lg=ls('lg')||[];lg.push([$('dl').value,+$('dm').value||0]);ls('lg',lg.slice(-60));hoje()}
+function hoje(){testBanner();const n=new Date(),nm=n.getHours()*60+n.getMinutes(),tk=K(n),tz=S[tk]?Z[S[tk]]:null;if(tz&&m(tz[1])<=nm&&ls('homeDay')!==tk){wrap(tz,nm);return}const nc=nextClass(nm);if(!nc){vh.innerHTML='<div class="c">Sem mais aulas no calendário.</div>';return}
+ const{k,z,i}=nc,T=m(z[0]),pl=plan(z),rec=pl.find(x=>x.c&&x.o.l.length>1)||pl.find(x=>x.c);
+ let h=`<div class="c"><div class="hd"><b>${dayName(nc)}</b>${TS.has(k)?'<span class="tag" style="background:var(--er)">TESTE</span>':''}<span class="big">${z[0]}</span></div><div class="pb">Geometria Descritiva A · ${z[0]}–${z[1]}</div>`;
+ if(rec){h+=`<div class="hd" style="margin-top:10px">${ch(rec.o)}<b>${rec.o.n}</b></div>${stH(rec.c)}<div class="t"><b>${f(rec.c.arr)}</b><div>Chegas à escola (margem ${T-rec.c.arr} min)</div></div>`;
+  h+=i==0?`<div id="cd" class="cdx" data-t="${rec.c.t0}"></div>`:`<div class="m">Sais de casa às ${f(rec.c.t0)}</div>`}else h+='<div class="m" style="color:var(--er)">Sem autocarro com essa margem. Vai a pé.</div>';
+ h+='</div>';if(i>0){const l=dayLeave(k);if(l!=null)h+=wakeHTML(l)}
+ if(i==0){const al=withDir(0,()=>opts().map(o=>({o,c:pick(o,false,nm)})).filter(x=>x.c).sort((a,b)=>a.c.arr-b.c.arr));
+  h+=`<div class="c"><b>Se sais agora (${f(nm)})</b>`+al.map(x=>{const d=T-x.c.arr;return`<div class="t"><b style="width:52px">${f(x.c.arr)}</b><div>${ch(x.o)} ${x.o.n}<br><span>sai ${f(x.c.t0)} · ${d>=0?d+' min antes da aula':-d+' min depois do início'}</span></div></div>`}).join('')+'</div>'}
+ const R=withDir(1,()=>opts().map(o=>({o,c:pick(o,false,m(z[1]))})).filter(x=>x.c&&x.o.l.length>1).sort((a,b)=>a.c.arr-b.c.arr))[0];
+ if(R)h+=`<div class="c"><b>Regresso (aula acaba às ${z[1]})</b><div class="hd" style="margin-top:8px">${ch(R.o)}<b>${R.o.n}</b><span class="big">${f(R.c.arr)}</span></div>${stH(R.c)}</div>`;
+ vh.innerHTML=h+'<div class="c" id="loc"></div>'+destCard()+delayCard();tick();locUI()}
+function destCard(){return`<div class="c"><b>Ir para outro sítio</b><div class="row" style="margin:8px 0 0"><label>Destino<input id="dd" placeholder="ex: Leiria Shopping" value="${ls('dst')||''}"></label></div><button class="bt" onclick="goMaps()">Ver no Google Maps (transportes)</button><div class="pb">Abre fora da página. Os horários da Mobilis nem sempre aparecem lá.</div></div>`}
+function goMaps(){const v=$('dd').value.trim();if(!v)return;ls('dst',v);const u='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(/leiria/i.test(v)?v:v+', Leiria')+'&travelmode=transit';window.open(u,'_blank')||(location.href=u)}
+function tick(){const e=$('cd');if(!e)return;const n=new Date(),d=+e.dataset.t*60-(n.getHours()*3600+n.getMinutes()*60+n.getSeconds()),st=d>600?'ok':d>0?'soon':'late',tx=d>0?'Sais de casa em '+(d>=3600?Math.floor(d/3600)+' h ':'')+Math.floor(d%3600/60)+' min':'Já devias ter saído',sm=st=='ok'?'':d>0?'Prepara-te e vai para a paragem':'A saída ideal era há '+Math.max(1,Math.ceil(-d/60))+' min · vê as opções abaixo ↓',k=st+tx+sm;if(e.dataset.k==k)return;e.dataset.k=k;e.className='cdx '+st;e.innerHTML=tx+(sm?'<small>'+sm+'</small>':'')}
+const PL={fr:{n:'Francês',w:'Alliance Française',a:'Av. Heróis de Angola 35, 2400-137 Leiria',q:'Alliance Française Leiria, Av. Heróis de Angola 35, Leiria',d:[2,4],t:['18:30','20:30'],wd:10,c:'#8e5bd1'},en:{n:'Inglês',w:'INEnglish',a:'Leiria (junto à descida para o Continente)',q:'INEnglish Leiria',d:[5],t:['17:00','19:00'],wd:15,c:'#e0802a'}};
+const DNf=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'],cm=()=>ls('cmp')||{},wdOf=k=>{const v=+(ls('wd')||{})[k];return v>0?v:PL[k].wd},vd=$$('vd');
+const L3u=D('06:43 07:33 08:28 08:48 09:43 10:43 11:58 12:43 13:53 14:43 15:43 16:43 16:58 17:53 18:58 19:23','3',12),L3d=D('06:35 07:30 07:50 08:40 09:35 10:05 11:00 12:05 13:05 13:50 15:00 16:00 16:50 17:50 18:10 19:00 20:05','3',8),L4t=D('07:00 07:50 09:00 10:30 12:10 14:00 16:20 17:20 18:10 19:30','4',29);
+let curDay='';
+function copt(k,out){const a=+$('w3').value,c=+$('w4').value,w=wdOf(k);return out?[{n:'Linha 3 até ao Estádio',l:[W(a),B(L3u,'Marinheiros · destino Telheiro (centro)'),W(w)]},{n:'Linha 4 até ao terminal',l:[W(c),B(L4,'Vale Sepal'),W(w)]}]:[{n:'Linha 3 até Marinheiros',l:[W(w),B(L3d,'Estádio · destino Ponte da Pedra'),W(a)]},{n:'Linha 4 até Vale Sepal',l:[W(w),B(L4t,'Terminal'),W(c)]}]}
+function tg(k){const c=cm();c[k]=!c[k];ls('cmp',c);semana()}
+function gm(q){const u='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)+'&travelmode=transit';window.open(u,'_blank')||(location.href=u)}
+function setWd(k,v){const o=ls('wd')||{};o[k]=+v;ls('wd',o);openDay(curDay)}
+function addEx(k){const n=$('xn').value.trim(),t=$('xt').value,q=$('xq').value.trim();if(!n)return;const o=ls('ex')||{};(o[k]=o[k]||[]).push({n,t,q});ls('ex',o);openDay(k)}
+function delEx(k,i){const o=ls('ex')||{};(o[k]||[]).splice(i,1);ls('ex',o);openDay(k)}
+function semana(){const d=new Date(),nm=d.getHours()*60+d.getMinutes(),SD=['dom','seg','ter','qua','qui','sex','sáb'],wk=x=>{const t=new Date(x);t.setHours(0,0,0,0);t.setDate(t.getDate()-(t.getDay()+6)%7);return t},w0=+wk(new Date()),G={},C=cm();
+ for(let i=0;i<21;i++,d.setDate(d.getDate()+1)){const k=K(d),z=S[k]?Z[S[k]]:null,ex=Object.keys(PL).filter(p=>C[p]&&PL[p].d.includes(d.getDay()));if(!z&&!ex.length)continue;if(i==0&&z&&m(z[1])<=nm&&!ex.length)continue;const w=+wk(d);(G[w]=G[w]||[]).push({i,d:new Date(d),k,z,ex})}
+ let h=`<div class="c"><b>Aulas extra (para testar)</b><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">${Object.keys(PL).map(p=>`<button class="pill${C[p]?' on':''}" onclick="tg('${p}')">${PL[p].n} · ${PL[p].d.map(x=>SD[x]).join('/')} ${PL[p].t[0]}</button>`).join('')}</div></div>`;
+ for(const w of Object.keys(G).sort()){const L=G[w],nt=L.filter(x=>TS.has(x.k)).length,na=L.filter(x=>x.z).length,wd=new Date(+w),dif=Math.round((+w-w0)/6048e5);
+  h+=`<div class="wh"><span>${dif==0?'Esta semana':dif==1?'Próxima semana':'Semana de '+wd.getDate()+'/'+(wd.getMonth()+1)}</span><span>${na} aula${na!=1?'s':''}${nt?' · '+nt+' teste':''}</span></div>`;
+  for(const x of L){const ts=TS.has(x.k),rec=x.z&&plan(x.z).find(y=>y.c&&y.o.l.length>1),T=x.z?m(x.z[0]):0,bs=rec&&rec.c.st.find(s=>s[1].startsWith('<span class="b b')),tags=x.ex.map(p=>`<span class="tag" style="background:${PL[p].c}">${PL[p].n} ${PL[p].t[0]}</span>`).join(' ');
+   h+=`<div class="dr${x.i==0?' hj':''}${ts?' ts':''}" onclick="openDay('${x.k}')" style="cursor:pointer"><div class="dd"><i>${SD[x.d.getDay()]}</i><b>${x.d.getDate()}</b></div><div class="di"><div class="a">${x.z?x.z[0]+'–'+x.z[1]:'Sem aulas'}${ts?'<span class="tag" style="background:#ff453a">Teste</span>':''}</div>${x.z?`<div class="s2">${rec?ch(rec.o)+' '+(bs?'às '+f(bs[0])+' · ':'')+'chegas '+f(rec.c.arr)+' ('+(T-rec.c.arr)+' min de margem)':'Sem autocarro com a margem · vai a pé'}</div>`:''}${tags?`<div class="s2">${tags}</div>`:''}</div><div class="ds"><small>${x.z?'Sai':'Início'}</small><b>${x.z?(rec?f(rec.c.t0):f(T-45-(+$('mg').value))):PL[x.ex[0]].t[0]}</b>${wl(x.k)}</div></div>`}}
+ vs.innerHTML=h}
+function openDay(k){curDay=k;vs.style.display='none';vd.style.display='';vd.innerHTML=dayHTML(k);scrollTo(0,0);anim2(3)}
+function closeDay(){vd.style.display='none';vs.style.display='';semana()}
+function dayHTML(k){const d=new Date(+k.slice(0,4),+k.slice(4,6)-1,+k.slice(6)),z=S[k]?Z[S[k]]:null,wd=d.getDay(),ts=TS.has(k),C=cm(),mg=+$('mg').value,t0=new Date();t0.setHours(0,0,0,0);const n=Math.round((d-t0)/864e5);
+ let h=`<button class="bk" onclick="closeDay()">‹ Semana</button><h1 style="font-size:28px;margin:4px 4px 12px">${DNf[wd][0].toUpperCase()+DNf[wd].slice(1)}, ${d.getDate()}/${d.getMonth()+1}</h1>`;
+ if(ts)h+=`<div class="alr">Teste de GDA${n==0?' hoje':n>0?' em '+n+' dia'+(n>1?'s':''):''}<small>${z[0]}–${z[1]} · leva o material e sai com margem</small></div>`;
+ {const l=dayLeave(k);if(l!=null)h+=wakeHTML(l)}
+ if(z){const T=m(z[0]),rec=plan(z).find(x=>x.c&&x.o.l.length>1)||plan(z).find(x=>x.c),R=withDir(1,()=>opts().map(o=>({o,c:pick(o,false,m(z[1]))})).filter(x=>x.c&&x.o.l.length>1).sort((a,b)=>a.c.arr-b.c.arr))[0];
+  h+=`<div class="c"><div class="hd"><b>Escola · Geometria Descritiva A</b><span class="big">${z[0]}</span></div><div class="pb">${z[0]}–${z[1]}</div>`+(rec?`<div class="hd" style="margin-top:10px">${ch(rec.o)}<b>Ida · ${rec.o.n}</b></div>${stH(rec.c)}<div class="t"><b>${f(rec.c.arr)}</b><div>Chegas (margem ${T-rec.c.arr} min)</div></div>`:'<div class="m">Sem autocarro com a margem. Vai a pé.</div>')+(R?`<div class="hd" style="margin-top:12px">${ch(R.o)}<b>Volta · ${R.o.n}</b></div>${stH(R.c)}<div class="t"><b>${f(R.c.arr)}</b><div>Chegas a casa</div></div>`:'')+'</div>'}else h+='<div class="c"><b>Sem aulas na escola</b><div class="pb">Nenhuma aula no teu horário neste dia.</div></div>';
+ for(const p of Object.keys(PL)){const P=PL[p];if(!(C[p]&&P.d.includes(wd)))continue;const T=m(P.t[0])-mg,go=copt(p,true).map(o=>({o,c:pick(o,true,T)})).filter(x=>x.c).sort((a,b)=>b.c.t0-a.c.t0)[0],bk=copt(p,false).map(o=>({o,c:pick(o,false,m(P.t[1]))})).filter(x=>x.c).sort((a,b)=>a.c.arr-b.c.arr)[0];
+  h+=`<div class="c" style="box-shadow:inset 4px 0 0 ${P.c}"><div class="hd"><b>${P.n} · ${P.w}</b><span class="big">${P.t[0]}</span></div><div class="pb">${P.t[0]}–${P.t[1]} · ${P.a}</div>`+(go?`<div class="hd" style="margin-top:10px">${ch(go.o)}<b>Ida · ${go.o.n}</b></div>${stH(go.c)}<div class="t"><b>${f(go.c.arr)}</b><div>Chegas lá (margem ${m(P.t[0])-go.c.arr} min)</div></div>`:'<div class="m">Sem autocarro da linha 3 ou 4 a tempo. Vê o Google Maps.</div>')+(bk?`<div class="hd" style="margin-top:12px">${ch(bk.o)}<b>Volta · ${bk.o.n}</b></div>${stH(bk.c)}<div class="t"><b>${f(bk.c.arr)}</b><div>Chegas a casa</div></div>`:`<div class="m" style="margin-top:12px;color:var(--er)">Sem autocarro de volta depois das ${P.t[1]}.</div><div class="pb">Último da linha 3: ${f(L3d[L3d.length-1][0])} no Estádio · da linha 4: ${f(L4t[L4t.length-1][0])} no terminal. Pensa em boleia ou táxi.</div>`)+`<div class="row" style="margin:12px 0 0"><label>A pé do terminal até lá (min, estimativa)<input type="number" min="1" value="${wdOf(p)}" onchange="setWd('${p}',this.value)"></label></div><button class="bt" onclick="gm('${P.q.replace(/'/g,'')}')">Ver no Google Maps</button></div>`}
+ const ex=(ls('ex')||{})[k]||[];
+ h+=`<div class="c"><b>Outros sítios neste dia</b>`+ex.map((e,i)=>`<div class="t"><b style="width:auto">${e.t||'--:--'}</b><div>${e.n}${e.q?`<br><button class="lk" onclick="gm('${e.q.replace(/'/g,'')}')">Abrir rota</button>`:''} <button class="lk" onclick="delEx('${k}',${i})">remover</button></div></div>`).join('')+`<div class="row" style="margin:10px 0 0"><label>O quê<input id="xn" placeholder="ex: dentista"></label><label>Hora<input id="xt" type="time"></label></div><div class="row" style="margin:8px 0 0"><label>Destino (para a rota)<input id="xq" placeholder="ex: Leiria Shopping"></label></div><button class="bt" onclick="addEx('${k}')">Adicionar</button></div>`;
+ return h+'<div class="pb" style="margin:8px 6px">Rotas das aulas extra usam só as linhas 3 e 4 até ao terminal/Estádio, mais os minutos a pé que definires. Confirma o trajeto no Google Maps.</div>'}
+function dayLeave(k){const wd=new Date(+k.slice(0,4),+k.slice(4,6)-1,+k.slice(6)).getDay(),z=S[k]?Z[S[k]]:null,C=cm(),a=[];if(!z)return null;if(z){const r=plan(z).find(x=>x.c&&x.o.l.length>1)||plan(z).find(x=>x.c);if(r)a.push(r.c.t0)}for(const p of Object.keys(PL)){if(!(C[p]&&PL[p].d.includes(wd)))continue;const T=m(PL[p].t[0])-(+$('mg').value),g=copt(p,true).map(o=>({o,c:pick(o,true,T)})).filter(x=>x.c).sort((x,y)=>y.c.t0-x.c.t0)[0];if(g)a.push(g.c.t0)}return a.length?Math.min(...a):null}
+function wakeHTML(l){const pr=+$('wp').value||0,hs=+$('hs').value||8,w=l-pr,bd=(((w-hs*60)%1440)+1440)%1440;return`<div class="c"><div class="hd"><b>Hora ideal de acordar</b><span class="big">${f(w)}</span></div><div class="pb">${pr} min para te preparares · sais de casa às ${f(l)}</div><div class="pb">Para dormires ${hs} h, deita-te às <b>${f(bd)}</b>${bd<360?' (já depois da meia-noite)':''}</div><div class="pb">Tenta não variar mais de 1 h da tua hora habitual de acordar.</div></div>`}
+const wl=k=>{const l=dayLeave(k);return l==null?'':`<small style="margin-top:2px">acorda ${f(l-(+$('wp').value||0))}</small>`};
+function cfg(){ls('cfg2',{mg:$('mg').value,w3:$('w3').value,w4:$('w4').value,wb:$('wb').value,wp:$('wp').value,hs:$('hs').value});run();hoje();semana()}
+const T2=new Spring(x=>$$('th2').style.transform=`translateX(${x}px)`,0);
+function setTab(i){vd.style.display='none';[vh,vr,vs].forEach((v,j)=>v.style.display=j==i?'':'none');[0,1,2].forEach(j=>$$('t'+j).style.opacity=j==i?1:.6);const w=$$('tb').offsetWidth/3-2;$$('th2').style.width=w+'px';T2.to(i*w,0,420,.9);if(i==1)run();anim2(i)}
+function anim2(i){if(R)return;[...[vh,vr,vs,vd][i].querySelectorAll('.c,.dr')].forEach((c,j)=>{c.style.opacity=0;const p=new Spring(y=>{c.style.transform=`translateY(${y}px)`;c.style.opacity=Math.max(0,1-y/16)},16);setTimeout(()=>p.to(0,0,300,.85),40+j*45)})}
+[0,1,2].forEach(i=>$$('t'+i).onclick=()=>setTab(i));
+
+function testBanner(){const e=$('tbn');if(!e)return;const t=new Date();t.setHours(0,0,0,0);let o='';for(const k of[...TS].sort()){const d=new Date(+k.slice(0,4),+k.slice(4,6)-1,+k.slice(6)),n=Math.round((d-t)/864e5);if(n>=0&&n<=7){const z=Z[S[k]]||['',''];o=`<div class="alr">${n==0?'Hoje tens teste de GDA':n==1?'Amanhã tens teste de GDA':'Teste de GDA em '+n+' dias'}<small>${d.getDate()}/${d.getMonth()+1} · ${z[0]}–${z[1]} · ${n>3?'começa a rever':n>0?'faz exercícios de treino':'leva o material e sai com margem'}</small></div>`;break}}e.innerHTML=o}
+const hv=(a,b)=>{const R=6371000,r=Math.PI/180,x=Math.sin((b[0]-a[0])*r/2)**2+Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin((b[1]-a[1])*r/2)**2;return 2*R*Math.asin(Math.sqrt(x))};
+let watching=false,pos=null,gerr='';const PT=()=>ls('pts')||{},NM={casa:'Casa',par:'Paragem Igreja Marinheiros',esc:'Escola'};
+function geo(){if(!navigator.geolocation){watching=true;gerr='Este navegador não dá a localização.';locUI();return}watching=true;navigator.geolocation.watchPosition(p=>{pos=[p.coords.latitude,p.coords.longitude,p.coords.accuracy];gerr='';chkHome();locUI()},e=>{pos=null;gerr=(e.code==1?'Permissão negada. No Safari: aA → Definições do website → Localização → Permitir.':'Não consegui obter a localização.')+(window.self!==window.top?' Esta página está dentro de outra app (como o Claude). Abre o link no Safari.':'');locUI()},{enableHighAccuracy:true,maximumAge:10000,timeout:20000});locUI()}
+function sv(k){if(!pos)return;const p=PT();p[k]=[pos[0],pos[1]];ls('pts',p);locUI()}
+function locUI(){const e=$('loc');if(!e)return;const p=PT();let s='<b>Localização</b>';
+ if(!watching)s+='<div class="pb">Ativa para eu saber se já estás na paragem.</div><button class="bt" onclick="geo()">Ativar localização</button>';
+ else if(!pos)s+=`<div class="pb">${gerr||'A procurar o teu sinal…'}</div>`;
+ else{const ds=Object.keys(p).map(k=>[k,hv(pos,p[k])]).sort((a,b)=>a[1]-b[1]),th=Math.max(50,pos[2]),at=ds[0]&&ds[0][1]<=th?ds[0][0]:null,n=new Date(),nm=n.getHours()*60+n.getMinutes();
+  s+=`<div class="m">${at?'Estás em: '+NM[at]:ds.length?'Não estás em nenhum dos 3 pontos':'Guarda os teus 3 pontos abaixo'}</div>`;
+  if(at=='par'){const b=L3.find(x=>x[0]>=nm);s+=b?`<div class="pb">Próxima linha 3 (destino Ponte da Pedra/Gândara): ${f(b[0])} · daqui a ${b[0]-nm} min</div>`:'<div class="pb">Sem mais autocarros hoje.</div>'}
+  if(at=='esc')s+='<div class="pb">Já estás na escola.</div>';
+  s+=ds.map(x=>`<div class="pb">${NM[x[0]]}: ${x[1]<1000?Math.round(x[1])+' m':(x[1]/1000).toFixed(1)+' km'} · ~${Math.max(1,Math.round(x[1]*1.25/85))} min a pé</div>`).join('');
+  if(p.casa&&p.par){const w=Math.max(1,Math.round(hv(p.casa,p.par)*1.25/85));s+=`<div class="pb">Casa → paragem: ~${w} min a pé<button onclick="$('w3').value=${w};cfg()">Usar</button></div>`}
+  s+=`<div class="pb">Precisão do sinal: ${Math.round(pos[2])} m</div>`}
+ s+='<div class="pb" style="margin-top:8px">Guarda a tua posição atual como:</div>'+['casa','par','esc'].map(k=>`<button class="bt" ${pos?'':'disabled'} onclick="sv('${k}')" style="padding:7px 10px;font-size:13px;margin:4px 4px 0 0">${p[k]?'✓ ':''}${NM[k]}</button>`).join('');
+ e.innerHTML=s}
+
+function wrap(tz,nm){const R=withDir(1,()=>opts().map(o=>({o,c:pick(o,false,Math.max(nm,m(tz[1])))})).filter(x=>x.c&&x.o.l.length>1).sort((a,b)=>a.c.arr-b.c.arr))[0];
+ vh.innerHTML=`<div class="c"><div class="hd"><b>Hoje</b><span class="tag">Aula terminou</span></div><div class="pb">Geometria Descritiva A · ${tz[0]}–${tz[1]}</div></div>`+(R?`<div class="c"><b>Regresso a casa</b><div class="hd" style="margin-top:8px">${ch(R.o)}<b>${R.o.n}</b><span class="big">${f(R.c.arr)}</span></div>${stH(R.c)}</div>`:'<div class="c"><b>Regresso a casa</b><div class="pb">Sem mais autocarros hoje. Vai a pé (~45 min).</div></div>')+'<div class="c"><b>Já estás em casa?</b><div class="pb">O dia de amanhã só aparece depois de chegares a casa.</div><button class="bt" onclick="homeNow()">Já estou em casa</button></div><div class="c" id="loc"></div>'+destCard()+delayCard();locUI()}
+function homeNow(){ls('homeDay',K(new Date()));hoje()}
+function chkHome(){const p=PT(),n=new Date(),tk=K(n),tz=S[tk]?Z[S[tk]]:null;if(!tz||!p.casa||!pos)return;if(n.getHours()*60+n.getMinutes()>=m(tz[1])&&hv(pos,p.casa)<=Math.max(50,pos[2])&&ls('homeDay')!==tk){ls('homeDay',tk);hoje()}}
+const cg=ls('cfg2');if(cg)for(const k in cg)$(k).value=cg[k];
+hoje();semana();setTab(0);setInterval(tick,1000);setInterval(()=>{if(!document.activeElement||!vh.contains(document.activeElement))hoje()},30000);
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));</script></body></html>
