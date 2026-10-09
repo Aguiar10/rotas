@@ -162,7 +162,8 @@ function anim2(i){if(R)return;[...[vh,vr,vs,vd][i].querySelectorAll('.c,.dr')].f
 function testBanner(){const e=$('tbn');if(!e)return;const t=new Date();t.setHours(0,0,0,0);let o='';for(const k of[...TS].sort()){const d=new Date(+k.slice(0,4),+k.slice(4,6)-1,+k.slice(6)),n=Math.round((d-t)/864e5);if(n>=0&&n<=7){const z=Z[S[k]]||['',''];o=`<div class="alr">${n==0?'Hoje tens teste de GDA':n==1?'Amanhã tens teste de GDA':'Teste de GDA em '+n+' dias'}<small>${d.getDate()}/${d.getMonth()+1} · ${z[0]}–${z[1]} · ${n>3?'começa a rever':n>0?'faz exercícios de treino':'leva o material e sai com margem'}</small></div>`;break}}e.innerHTML=o}
 const hv=(a,b)=>{const R=6371000,r=Math.PI/180,x=Math.sin((b[0]-a[0])*r/2)**2+Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin((b[1]-a[1])*r/2)**2;return 2*R*Math.asin(Math.sqrt(x))};
 let watching=false,pos=null,gerr='';const PT=()=>ls('pts')||{},NM={casa:'Casa',par:'Paragem Igreja Marinheiros',esc:'Escola'};
-function geo(){if(!navigator.geolocation){watching=true;gerr='Este navegador não dá a localização.';locUI();return}watching=true;navigator.geolocation.watchPosition(p=>{pos=[p.coords.latitude,p.coords.longitude,p.coords.accuracy];gerr='';chkHome();const w=atWhere();if(w!==lastW){lastW=w;hoje()}else locUI()},e=>{pos=null;gerr=(e.code==1?'Permissão negada. No Safari: aA → Definições do website → Localização → Permitir.':'Não consegui obter a localização.')+(window.self!==window.top?' Esta página está dentro de outra app (como o Claude). Abre o link no Safari.':'');locUI()},{enableHighAccuracy:true,maximumAge:10000,timeout:20000});locUI()}
+function geoOff(){ls('geoOn',false);location.reload()}
+function geo(){ls('geoOn',true);if(!navigator.geolocation){watching=true;gerr='Este navegador não dá a localização.';locUI();return}watching=true;navigator.geolocation.watchPosition(p=>{pos=[p.coords.latitude,p.coords.longitude,p.coords.accuracy];gerr='';chkHome();const w=atWhere();if(w!==lastW){lastW=w;hoje()}else locUI()},e=>{pos=null;gerr=(e.code==1?'Permissão negada. No Safari: aA → Definições do website → Localização → Permitir.':'Não consegui obter a localização.')+(window.self!==window.top?' Esta página está dentro de outra app (como o Claude). Abre o link no Safari.':'');locUI()},{enableHighAccuracy:true,maximumAge:10000,timeout:20000});locUI()}
 function sv(k){if(!pos)return;const p=PT();p[k]=[pos[0],pos[1]];ls('pts',p);locUI()}
 function locUI(){const e=$('loc');if(!e)return;const p=PT();let s='<b>Localização</b>';
  if(!watching)s+='<div class="pb">Ativa para eu saber se já estás na paragem.</div><button class="bt" onclick="geo()">Ativar localização</button>';
@@ -174,7 +175,7 @@ function locUI(){const e=$('loc');if(!e)return;const p=PT();let s='<b>Localizaç
   s+=ds.map(x=>`<div class="pb">${NM[x[0]]}: ${x[1]<1000?Math.round(x[1])+' m':(x[1]/1000).toFixed(1)+' km'} · ~${Math.max(1,Math.round(x[1]*1.25/85))} min a pé</div>`).join('');
   if(p.casa&&p.par){const w=Math.max(1,Math.round(hv(p.casa,p.par)*1.25/85));s+=`<div class="pb">Casa → paragem: ~${w} min a pé<button onclick="$('w3').value=${w};cfg()">Usar</button></div>`}
   s+=`<div class="pb">Precisão do sinal: ${Math.round(pos[2])} m</div>`}
- s+='<div class="pb" style="margin-top:8px">Guarda a tua posição atual como:</div>'+['casa','par','esc'].map(k=>`<button class="bt" ${pos?'':'disabled'} onclick="sv('${k}')" style="padding:7px 10px;font-size:13px;margin:4px 4px 0 0">${p[k]?'✓ ':''}${NM[k]}</button>`).join('');
+ if(watching)s+='<div class="pb"><button onclick="geoOff()">Desligar localização</button></div>';s+='<div class="pb" style="margin-top:8px">Guarda a tua posição atual como:</div>'+['casa','par','esc'].map(k=>`<button class="bt" ${pos?'':'disabled'} onclick="sv('${k}')" style="padding:7px 10px;font-size:13px;margin:4px 4px 0 0">${p[k]?'✓ ':''}${NM[k]}</button>`).join('');
  e.innerHTML=s}
 
 let lastW=null;
@@ -186,5 +187,5 @@ function wrap(tz,nm){const R=withDir(1,()=>opts().map(o=>({o,c:pick(o,false,Math
 function homeNow(){ls('homeDay',K(new Date()));hoje()}
 function chkHome(){const p=PT(),n=new Date(),tk=K(n),tz=S[tk]?Z[S[tk]]:null;if(!tz||!p.casa||!pos)return;if(n.getHours()*60+n.getMinutes()>=m(tz[1])&&hv(pos,p.casa)<=Math.max(50,pos[2])&&ls('homeDay')!==tk){ls('homeDay',tk);hoje()}}
 const cg=ls('cfg2');if(cg)for(const k in cg)$(k).value=cg[k];
-hoje();semana();setTab(0);setInterval(tick,1000);setInterval(()=>{if(!document.activeElement||!vh.contains(document.activeElement))hoje()},30000);
+hoje();semana();setTab(0);setInterval(tick,1000);if(ls('geoOn'))geo();setInterval(()=>{if(!document.activeElement||!vh.contains(document.activeElement))hoje()},30000);
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));</script></body></html>
