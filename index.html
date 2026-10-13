@@ -34,7 +34,7 @@ h1{margin:0;font-size:30px;line-height:1.1;letter-spacing:-.025em;font-weight:70
 <div id="vr" style="display:none">
 <div class="seg" id="sg"><i class="th" id="th"></i><button id="d0">Casa → Escola</button><button id="d1">Escola → Casa</button></div>
 <div class="row"><label><span id="tl">Chegar à escola às</span><input id="ti" type="time" value="11:30"></label>
-<label style="display:none">Margem mínima<select id="mg"><option value="0">0 min</option><option value="10" selected>10 min</option><option value="15">15 min</option><option value="30">30 min</option><option value="40">40 min</option></select></label></div><div class="pb" style="margin:0 4px 6px">Margem mínima</div><div class="chips" id="mgc"></div><div id="hid" style="display:none"><input id="w3" type="number" value="12"><input id="w4" type="number" value="3"><input id="wb" type="number" value="5"><input id="wp" type="number" value="60"><input id="hs" type="number" value="8"></div>
+<label style="display:none">Margem mínima<select id="mg"><option value="0">0 min</option><option value="10" selected>10 min</option><option value="15">15 min</option><option value="30">30 min</option><option value="40">40 min</option></select></label></div><div class="pb" style="margin:0 4px 6px">Margem mínima</div><div class="chips" id="mgc"></div><div id="hid" style="display:none"><input id="w3" type="number" value="12"><input id="w4" type="number" value="3"><input id="wb" type="number" value="5"><input id="wp" type="number" value="60"><input id="hs" type="number" value="8"><input id="rs" type="number" value="150"></div>
 <div id="out"></div></div>
 <p class="n">Horários de dias úteis das linhas 1, 2, 3 e 4 (em vigor desde 1 set 2026). Só cobre estas linhas e a escola, não é um mapa completo. Horários teóricos: confirma sempre na paragem.</p>
 </div></div>
@@ -151,14 +151,14 @@ function dayLeave(k){const wd=new Date(+k.slice(0,4),+k.slice(4,6)-1,+k.slice(6)
 function wakeHTML(l){const pr=+$('wp').value||0,hs=+$('hs').value||8,w=l-pr,bd=(((w-hs*60)%1440)+1440)%1440;return`<div class="c"><div class="hd"><b>Hora ideal de acordar</b><span class="big">${f(w)}</span></div><div class="pb">${pr} min para te preparares · sais de casa às ${f(l)}</div><div class="pb">Para dormires ${hs} h, deita-te às <b>${f(bd)}</b>${bd<360?' (já depois da meia-noite)':''}</div><div class="pb">Tenta não variar mais de 1 h da tua hora habitual de acordar.</div></div>`}
 const wl=k=>{const l=dayLeave(k);return l==null?'':`<small style="margin-top:2px">acorda ${f(l-(+$('wp').value||0))}</small>`};
 let curTab=0;
-const AJ=[['A caminhar',[['w3','A pé até à paragem de Marinheiros','min',1,1,60],['w4','A pé até à paragem de Vale Sepal','min',1,1,30],['wb','Chegar à paragem com folga de','min',1,0,30]]],['De manhã',[['wp','Tempo para me preparar','min',5,0,180],['hs','Horas de sono','h',.5,4,12]]]];
+const AJ=[['A caminhar',[['w3','A pé até à paragem de Marinheiros','min',1,1,60],['w4','A pé até à paragem de Vale Sepal','min',1,1,30],['wb','Chegar à paragem com folga de','min',1,0,30]]],['Localização',[['rs','Raio da escola (zona que conta como "na escola")','m',25,50,400]]],['De manhã',[['wp','Tempo para me preparar','min',5,0,180],['hs','Horas de sono','h',.5,4,12]]]];
 function mgChips(){const e=$('mgc');if(e)e.innerHTML=[0,10,15,30,40].map(v=>`<button class="pill${+$('mg').value==v?' on':''}" onclick="setMg(${v})">${v} min</button>`).join('')}
 function setMg(v){$('mg').value=v;cfg()}
 function ajustes(){$$('vg').innerHTML='<button class="bk" onclick="closeAj()">‹ Voltar</button><h1 style="font-size:28px;margin:4px 4px 12px">Ajustes</h1>'+AJ.map(g=>`<div class="wh"><span>${g[0]}</span></div><div class="c" style="padding:2px 14px">${g[1].map(r=>`<div class="st"><span>${r[1]}</span><div><button onclick="stp('${r[0]}',-1)">−</button><b>${$(r[0]).value} ${r[2]}</b><button onclick="stp('${r[0]}',1)">+</button></div></div>`).join('')}</div>`).join('')+(PT().casa&&PT().par?'<div class="pb" style="margin:10px 6px">Com Casa e Paragem guardadas, a página usa '+W3()+' min a pé até à paragem, calculado pelos teus pontos. O valor acima é só reserva.</div>':'')+'<div class="pb" style="margin:10px 6px">Os ajustes ficam guardados neste telemóvel. A margem mínima está no separador Rotas.</div>'}
 function stp(id,d){const r=AJ.flatMap(g=>g[1]).find(x=>x[0]==id);let v=+$(id).value+d*r[3];v=Math.max(r[4],Math.min(r[5],Math.round(v*10)/10));$(id).value=v;cfg();ajustes()}
 function openAj(){[vh,vr,vs,vd].forEach(v=>v.style.display='none');$$('vg').style.display='';ajustes();scrollTo(0,0)}
 function closeAj(){$$('vg').style.display='none';setTab(curTab)}
-function cfg(){mgChips();ls('cfg2',{mg:$('mg').value,w3:$('w3').value,w4:$('w4').value,wb:$('wb').value,wp:$('wp').value,hs:$('hs').value});run();hoje();semana()}
+function cfg(){mgChips();ls('cfg2',{mg:$('mg').value,w3:$('w3').value,w4:$('w4').value,wb:$('wb').value,wp:$('wp').value,hs:$('hs').value,rs:$('rs').value});run();hoje();semana()}
 const T2=new Spring(x=>$$('th2').style.transform=`translateX(${x}px)`,0);
 function setTab(i){curTab=i;vd.style.display='none';$$('vg').style.display='none';[vh,vr,vs].forEach((v,j)=>v.style.display=j==i?'':'none');[0,1,2].forEach(j=>$$('t'+j).style.opacity=j==i?1:.6);const w=$$('tb').offsetWidth/3-2;$$('th2').style.width=w+'px';T2.to(i*w,0,420,.9);if(i==1)run();anim2(i)}
 function anim2(i){if(R)return;[...[vh,vr,vs,vd][i].querySelectorAll('.c,.dr')].forEach((c,j)=>{c.style.opacity=0;const p=new Spring(y=>{c.style.transform=`translateY(${y}px)`;c.style.opacity=Math.max(0,1-y/16)},16);setTimeout(()=>p.to(0,0,300,.85),40+j*45)})}
@@ -173,7 +173,7 @@ function sv(k){if(!pos)return;const p=PT();p[k]=[pos[0],pos[1]];ls('pts',p);locU
 function locUI(){const e=$('loc');if(!e)return;const p=PT();let s='<b>Localização</b>';
  if(!watching)s+='<div class="pb">Ativa para eu saber se já estás na paragem.</div><button class="bt" onclick="geo()">Ativar localização</button>';
  else if(!pos)s+=`<div class="pb">${gerr||'A procurar o teu sinal…'}</div>`;
- else{const ds=Object.keys(p).map(k=>[k,hv(pos,p[k])]).sort((a,b)=>a[1]-b[1]),th=Math.max(50,pos[2]),at=ds[0]&&ds[0][1]<=th?ds[0][0]:null,n=new Date(),nm=n.getHours()*60+n.getMinutes();
+ else{const ds=Object.keys(p).map(k=>[k,hv(pos,p[k])]).sort((a,b)=>a[1]-b[1]),at=ds[0]&&ds[0][1]<=Math.max(rad(ds[0][0]),pos[2])?ds[0][0]:null,n=new Date(),nm=n.getHours()*60+n.getMinutes();
   s+=`<div class="m">${at?'Estás em: '+NM[at]:ds.length?'Não estás em nenhum dos 3 pontos':'Guarda os teus 3 pontos abaixo'}</div>`;
   if(at=='par'){const b=L3.find(x=>x[0]>=nm);s+=b?`<div class="pb">Próxima linha 3 (destino Ponte da Pedra/Gândara): ${f(b[0])} · daqui a ${b[0]-nm} min</div>`:'<div class="pb">Sem mais autocarros hoje.</div>'}
   if(at=='esc')s+='<div class="pb">Já estás na escola.</div>';
@@ -181,12 +181,14 @@ function locUI(){const e=$('loc');if(!e)return;const p=PT();let s='<b>Localizaç
   if(p.casa&&p.par){const w=Math.max(1,Math.round(hv(p.casa,p.par)*1.25/85));s+=`<div class="pb">Casa → paragem: ~${w} min a pé<button onclick="$('w3').value=${w};cfg()">Usar</button></div>`}
   s+=`<div class="pb">Precisão do sinal: ${Math.round(pos[2])} m</div>`}
  if(watching)s+='<div class="pb"><button onclick="geoOff()">Desligar localização</button></div>';s+='<div class="pb" style="margin-top:8px">Guarda a tua posição atual como:</div>'+['casa','par','esc'].map(k=>`<button class="bt" ${pos?'':'disabled'} onclick="sv('${k}')" style="padding:7px 10px;font-size:13px;margin:4px 4px 0 0">${p[k]?'✓ ':''}${NM[k]}</button>`).join('');
- e.innerHTML=s}
+ if(p.esc)s+=`<div class="pb" style="margin-top:10px">Raio da escola: ${+$('rs').value||150} m</div><button class="bt" ${pos?'':'disabled'} onclick="limEsc()" style="padding:7px 10px;font-size:13px;margin-top:6px">Marcar limite da escola aqui</button><div class="pb">Vai até ao ponto mais afastado que ainda é escola e toca no botão: o raio aumenta até lá.</div>`;e.innerHTML=s}
 
 let lastW=null;
-function atWhere(){if(!pos)return null;const p=PT(),ds=Object.keys(p).map(k=>[k,hv(pos,p[k])]).sort((a,b)=>a[1]-b[1]);return ds[0]&&ds[0][1]<=Math.max(50,pos[2])?ds[0][0]:null}
+function atWhere(){if(!pos)return null;const p=PT(),ds=Object.keys(p).map(k=>[k,hv(pos,p[k])]).sort((a,b)=>a[1]-b[1]);return ds[0]&&ds[0][1]<=Math.max(rad(ds[0][0]),pos[2])?ds[0][0]:null}
 function schoolView(nc){const{k,z}=nc,R=withDir(1,()=>opts().map(o=>({o,c:pick(o,false,m(z[1]))})).filter(x=>x.c&&x.o.l.length>1).sort((a,b)=>a.c.arr-b.c.arr))[0];
  vh.innerHTML=`<div class="c"><div class="hd"><b>Já estás na escola</b>${TS.has(k)?'<span class="tag" style="background:var(--er)">TESTE</span>':''}<span class="big">${z[0]}</span></div><div class="pb">Aula ${z[0]}–${z[1]}</div></div>`+(tripNote()?`<div class="c"><div class="pb">${tripNote()}</div></div>`:'')+(R?`<div class="c"><b>Regresso (aula acaba às ${z[1]})</b><div class="hd" style="margin-top:8px">${ch(R.o)}<b>${R.o.n}</b><span class="big">${f(R.c.arr)}</span></div>${stH(R.c)}</div>`:'<div class="c"><b>Regresso</b><div class="pb">Sem autocarro nas linhas 3 e 4. Vai a pé (~45 min).</div></div>')+'<div class="c" id="loc"></div>'+destCard()+delayCard();locUI()}
+function rad(k){return k=='esc'?(+$('rs').value||150):50}
+function limEsc(){const p=PT();if(!pos||!p.esc)return;const d=Math.ceil(hv(pos,p.esc)/5)*5+5;if(d>(+$('rs').value||150)){$('rs').value=Math.min(400,d)}cfg();locUI()}
 let lastR=0;
 function W3(){try{const p=PT();if(p.casa&&p.par)return Math.max(1,Math.round(hv(p.casa,p.par)*1.25/85))}catch(e){}return +$('w3').value||12}
 function estado(){if(!pos)return{k:null};if(busS.on)return{k:'bus'};const w=atWhere();if(w)return{k:w};const p=PT();if(p.casa&&p.par){const cp=hv(p.casa,p.par),dc=hv(pos,p.casa),dp=hv(pos,p.par);if(dc+dp<=cp*1.35+pos[2])return{k:'caminho',dp}}return{k:'fora'}}
